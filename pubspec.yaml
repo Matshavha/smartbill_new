@@ -1,0 +1,24 @@
+name: smartbill_plus
+description: A mobile app to display Megaflex Gen tariff rates using offline CSV
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/tariff_details.csv
+    - assets/eskom_logo.png
+    - assets/1159364720.csv
+    - assets/9857665714.csv
+    - assets/7614718533.csv
+    - assets/5717941398.csv
+
+
