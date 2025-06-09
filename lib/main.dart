@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dashboard_screen.dart'; // NEW IMPORT
+import 'welcome_screen.dart';
 
 void main() {
   runApp(SmartBillApp());
@@ -25,7 +26,7 @@ class SmartBillApp extends StatelessWidget {
           ),
         ),
       ),
-      home: TariffOfflineApp(),
+      home: WelcomeScreen(), // Import this from welcome_screen.dart
     );
   }
 }
@@ -82,9 +83,7 @@ class _TariffOfflineAppState extends State<TariffOfflineApp> {
   }
 
   void _search() {
-    final match = _csvData
-        .skip(1)
-        .firstWhere(
+    final match = _csvData.skip(1).firstWhere(
           (row) =>
               row[0] == _selectedTransmission &&
               row[1] == _selectedVoltage &&
@@ -186,14 +185,12 @@ class _TariffOfflineAppState extends State<TariffOfflineApp> {
                     _selectedSeason == 'Low Season' &&
                         header.startsWith('LS_') ||
                     (!header.startsWith('HS_') && !header.startsWith('LS_'))) {
-                  final includeVat =
-                      _includeVat &&
+                  final includeVat = _includeVat &&
                       !header.toLowerCase().contains('loss factor');
 
                   final original = double.tryParse(value) ?? 0.0;
-                  final displayedValue = includeVat
-                      ? (original * 1.15).toStringAsFixed(2)
-                      : value;
+                  final displayedValue =
+                      includeVat ? (original * 1.15).toStringAsFixed(2) : value;
 
                   return Card(
                     elevation: 2,
